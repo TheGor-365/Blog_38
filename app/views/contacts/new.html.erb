@@ -4,6 +4,17 @@
 
 <div class="container">
   <%= form_for :contact, url: contacts_path do |f| %>
+    <% if @contact && @contact.errors.any? %>
+      <p>
+        <ul>
+          <% @contact.errors.full_messages.each do |msg| %>
+            <small>
+              <li><%= msg %></li>
+            </small>
+          <% end %>
+        </ul>
+      </p>
+    <% end %>
     <p>
       <%= f.label :email %><br>
       <%= f.text_field :email %>
